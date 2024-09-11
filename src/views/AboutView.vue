@@ -1,20 +1,13 @@
 <template>
   <div class="about">
-    <h1>Compilados</h1>
-    <el-table :data="paginatedData" style="width: 100%;">
-      <el-table-column prop="date" label="Date" width="180" />
-      <el-table-column prop="name" label="Name" width="180" />
-      <el-table-column prop="address" label="Address" />
+    <h1>Libros</h1>
+    <el-table :data="tableData" style="width: 100%;">
+      <el-table-column prop="id" label="id" width="180" />
+      <el-table-column prop="name" label="Nombre" width="180" />
+      <el-table-column prop="price" label="Precio" />
     </el-table>
 
-    <el-pagination
-      background
-      layout="prev, pager, next"
-      :total="total"
-      :page-size="pageSize"
-      :current-page="currentPage"
-      @current-change="handlePageChange"
-    />
+  
   </div>
 </template>
 
@@ -23,23 +16,27 @@
 </style>
 
 <script setup>
-import { ref, computed } from 'vue'
+import axios from 'axios';
+import { ref, computed, onMounted } from 'vue'
 
+    const baseUrl = import.meta.env.VITE_API_BOOKS;
     const tableData = ref([])
 
-    const currentPage = ref(1)
-    const pageSize = ref(10) // Número de filas por página
-    const total = computed(() => tableData.value.length)
-
-    const paginatedData = computed(() => {
-      const start = (currentPage.value - 1) * pageSize.value
-      const end = start + pageSize.value
-      return tableData.value.slice(start, end)
+    onMounted(()=>{
+    
+        axios.get(baseUrl).then(response=>{
+          tableData.value = response.data.data.data.map(value =>{
+              return {
+                id:value.id,
+                name:value.volumeInfo.title,
+                price:Math.round(Math.random() * 1000)
+              }
+          })  
+          console.log(tableData.value)
+        }).catch(error=>{
+            console.error(error)
+        })
     })
-
-    const handlePageChange = (page) => {
-      currentPage.value = page
-    }
 
 
  
