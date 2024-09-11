@@ -14,6 +14,10 @@ dist-ssr
 coverage
 *.local
 
+# Ignorar compilados en la carpeta public/assets
+public/assets/
+public/index.html
+
 /cypress/videos/
 /cypress/screenshots/
 
