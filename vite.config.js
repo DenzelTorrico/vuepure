@@ -8,6 +8,10 @@ export default defineConfig({
   plugins: [
     vue(),
   ],
+  build:{
+      outDir: "public",
+      emptyOutDir: false // Para no eliminar el contenido existente en la carpeta 'public'
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
