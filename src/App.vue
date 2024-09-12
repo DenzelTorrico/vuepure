@@ -10,13 +10,7 @@ import Sidebar from './views/layouts/Sidebar.vue';
     
     <!-- Contenido principal -->
     <div class="content">
-      <header>
-        <nav>
-          <RouterLink to="/">Home</RouterLink>
-          <RouterLink to="/about">Libros</RouterLink>
-        </nav>
-      </header>
-
+    
       <main>
         <!-- El RouterView renderiza las rutas aquí -->
         <RouterView />
