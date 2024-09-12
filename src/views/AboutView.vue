@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <div class="about container">
     <h1>Libros</h1>
     <el-table :data="tableData" style="width: 100%;">
       <el-table-column prop="id" label="id" width="180" />
