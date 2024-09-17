@@ -1,16 +1,11 @@
-<script setup>
-import { RouterLink, RouterView } from 'vue-router';
-import Sidebar from './views/layouts/Sidebar.vue';
-</script>
 
 <template>
   <div class="main-layout">
     <!-- Sidebar -->
-    <Sidebar />
+    <Sidebar v-if="token" />
     
     <!-- Contenido principal -->
-    <div class="content">
-    
+    <div :class="{token : 'content'}">
       <main>
         <!-- El RouterView renderiza las rutas aquí -->
         <RouterView />
@@ -19,9 +14,19 @@ import Sidebar from './views/layouts/Sidebar.vue';
   </div>
 </template>
 
+
+<script setup>
+import { RouterLink, RouterView } from 'vue-router';
+import Sidebar from './views/layouts/Sidebar.vue';
+import LoginView from './views/auth/loginView.vue';
+import { ref } from 'vue';
+    const token = localStorage.getItem('token');
+    const prop = defineProps()
+</script>
 <style scoped>
 .main-layout {
   display: flex;
+  align-content: center;
 }
 
 .sidebar {
