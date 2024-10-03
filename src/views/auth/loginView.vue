@@ -3,13 +3,13 @@
         <h1>Login</h1>
   <!-- Email input -->
   <div data-mdb-input-init class="form-outline mb-4">
-    <input type="email" id="form2Example1" class="form-control" />
+    <input v-model="email" type="email" id="form2Example1" class="form-control" />
     <label class="form-label" for="form2Example1">Email address</label>
   </div>
 
   <!-- Password input -->
   <div data-mdb-input-init class="form-outline mb-4">
-    <input type="password" id="form2Example2" class="form-control" />
+    <input v-model="password" type="password" id="form2Example2" class="form-control" />
     <label class="form-label" for="form2Example2">Password</label>
   </div>
 
@@ -62,10 +62,10 @@ import { ref } from 'vue';
         const password = ref("")
         const emit = defineEmits(["client"])
         const login = ()=>{
-            if(email == "denzel_silva@hotmail.com" && password == "admin"){
+            if(email.value == "user" && password.value == "admin"){
                 emit("client",{email:email.value,password:password.value})
             }else{
-                alert("error de contraseña")   
+                alert("error")
             }
         }
 </script>

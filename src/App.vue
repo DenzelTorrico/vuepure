@@ -1,8 +1,10 @@
 
 <template>
   <div class="main-layout">
+    
+    <!--LoginView v-if="!token" @client="handleLogin" /-->
     <!-- Sidebar -->
-    <Sidebar v-if="token" />
+    <Sidebar  />
     
     <!-- Contenido principal -->
     <div :class="{token : 'content'}">
@@ -20,13 +22,17 @@ import { RouterLink, RouterView } from 'vue-router';
 import Sidebar from './views/layouts/Sidebar.vue';
 import LoginView from './views/auth/loginView.vue';
 import { ref } from 'vue';
+import router from './router';
     const token = localStorage.getItem('token');
     const prop = defineProps()
+    const handleLogin = (clientData) =>{
+          localStorage.setItem('token', clientData)
+          router.push("home")
+    }
 </script>
 <style scoped>
 .main-layout {
   display: flex;
-  align-content: center;
 }
 
 .sidebar {
